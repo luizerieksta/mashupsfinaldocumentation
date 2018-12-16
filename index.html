@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>About Page</title>
+		<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<a href="https://mashups-final-luize.herokuapp.com/"><button class="main-page">Main Page</button></a>
+		<div id="about-page">
+			<h1 class="about-heading">About <i> Travel Explore Guide 2.0</i></h1>
+
+			<div class="centered">
+
+			<h2>Description</h2>
+
+			<p>My final project is a continuation of the Travel Explore Guide project which was designed to help users find recommendations about activities to do in different cities in categories like eating, hiking, going out, etc. In my final project the user also searches for a city and a category of interest and gets results with suggestions as well as weather information in the particular city but, besides that, users also input information about themselves - their affiliation and the country they are from. The user can then click a button 'See where others want to go' and choose from two options of sorting data - either by all the cities and activities that people have searched for or by affiliation and countries that people are from. If the user clicks Discover by 'Cities and Activities' then all the cities that people have searched for appear on the page with their names and photos. When hovering over an image, all the activities that have been searched in this city show up along with the number of people who searched for the activities which is represented by person icons. If the user clicks Discover by 'Who searched?' then he or she can choose from 3 affiliations - students, faculty or visitor. When the user clicks on a button for one of the categories, all the cities that people in this category have searched for show up. When hovering over the image the countries that these people are from show up as well as the number of people from each country. All this information can be found in my API which can be usd for discovering what places different groups of people from NYUAD are interested in and where these people are from. The link to my API is here:<br>
+				<a class="links" href="https://mashups-final-luize.herokuapp.com/api/all">My API</a></p>
+
+			<h2>Motivation and Creation Process</h2>
+
+			<p>My motivation for creating this project was my willingness to keep working on my first project and visualizing the places that people search for. I was interested whether there would be any patterns for the searches and which places are the most popular among certain groups of people. I was wondering whether people would search for places they already know really well (for example, their home city) or places that they have travelled to or are planning to travel to. Thus, I decided to ask for the country that the users are from to better explore these patterns.</p>
+
+			<p>The process of creating this project started with saving the data on Cloudant database and sorting it by different groups like city name and affiliation using Underscore.js. For example, for sorting the data by cities I first sorted all the data from the database by city names and then used the already sorted data to further sort by activities, in order to get the results about what activities were searched in each particular city. I created separate functions for each different method how the data was sorted. After parsing the data I introduced the Flickr API to search for images for each of the cities that has been searched. At first the images that I got back were often not relevant and reliable (I searched for tags = 'the city name'). Thus, I explored the Flickr API more and introduced another search parameter which is sorting data by interestingness and taking the first most interesting image as well as adding another tag = 'landscape', which made the results more reliable. Then I started appending the data on the page which required changing some of the functions where data was sorted and figuring out the order in which to append each element. For example, I had to make sure that the Flickr API request is being made before appending anything on the page, otherwise data like city names was showing up on the page before I got back all the pictures. I had to create separate divs for different affiliation categories, for example, a different div for each affiliation category in order to be able to distinguish them and show the respective data on each button click depending on which affiliation group the user chooses.</p>
+
+			<p>I also wanted to show some extra information about each search by hovering over each image. That required making a separate div for the information that would appear on hover and making it a part of a parent div which in this case also contained the name of the city and the image. I did not know how to make only the respective information box appear for each of the parent divs and Craig showed me how to access the information of children divs for each parent div and append it to the page. At first the information was appearing on the bottom of the parent div, thus pushing the image and the city name to the top, which was not the interaction experience that I wanted to have. Unfortunately, I did not manage to fix it until the IM show, however, I fixed it later (it required changing where I was creating the information box divs which are a part of the parent div). Now the information about the activities and countries that people are from appear on hover and on top of the image and all the images stay aligned.</p>
+
+			<p>At first I displayed the results with all cities and activities immediately when a user clicked on 'See where others want to go', however, after observing how people interacted with my project in the IM show, I decided to only show the two buttons of the data that can be discovered. Then the user can consciously make a decision about how he or she wants to sort the data and is more aware of what is displayed on the page.</p>
+
+			<h2>Design</h2>
+
+			<p>In terms of design I changed the color scheme of the first project and instead of a pinkish color I am now using a light green as an accent color, because I think it is a more neutral and suitable color for a traveling-related site. I also reduced the amount of black text I was using and changed it to dark grey only keeping the black for more important information. I tried to make the discover page simple and intuitive to use with not too many buttons so that the user would not get confused how to search for particular information. I am giving some instructions on how to use the hover effect and what information is displayed on hover.</p>
+
+			<h2>Challenges</h2>
+
+			<p>I would say that overall the whole project was challenging because there were many functions that were nested within each other. However, the most challenging part was figuring out where each thing should be happening and where to introduce each new feature that I wanted to add. I also struggled with appending the information to separate divs and understanding where each div should be opened and closed. However, I think that overall it was a really good practice to write the code this way because it really made me think how everything is connected and how to pass arguments from one function to another. The project also helped me to better understand the structure of html divs and I was able to figure out the issue that I was facing with saving all information box elements in one single div and put it in absolute position relative to the parent div.</p>
+	
+			<h2>Possible next steps</h2>
+
+			<p>I think that my possible next steps would be improving the interface when more people search for the same place in order to contain the information box text within the area of the image or only show the most popular searches. I could also make the search parameters more elaborate and make more search criteria.</p>
+
+			<h2>Links to outside code resources</h2>
+
+			<p>I used this to change the opacity of the image when hovering on top of it:<br>
+				<a class="links" href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_image_overlay_opacity">Hovering over an image</a></p>
+			<p>I used this for hiding and showing divs on hover:<br>
+				<a class="links" href="https://stackoverflow.com/questions/11114543/show-hide-a-div-on-hover-and-hover-out">Show/hide on hover</a></p>
+			<p>I used Underscore.js groupBy for parsing data<br>
+				<a class="links" href="https://underscorejs.org/#groupBy">Underscore.js groupBy</a></p>
+
+			</div>
+
+
+
+		</div>
+	</body>
+</html>
